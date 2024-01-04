@@ -1,9 +1,10 @@
 from django.shortcuts import render, redirect
 from .forms import ExpenseForm
-from .models import Expense
+from .models import Expense, Income
 from django.shortcuts import render
 from django.contrib.auth import logout
-
+from django.contrib import messages
+from .forms import IncomeForm
 
 def expense_list(request):
     # Fetch all expenses (you may filter based on user if needed)
@@ -55,3 +56,32 @@ def confirm_sign_out(request):
         return redirect('login')  # Redirect to the login page
     return redirect('home')  # If the user cancels, redirect them back to the home page
 
+def Income(request):
+    if request.method == 'POST':
+        form = IncomeForm(request.POST)
+        if form.is_valid():
+            income_amount = form.cleaned_data['income_amount']
+            # Save the income_amount to the database or perform necessary actions
+            messages.success(request, f'Monthly Income of {income_amount} added successfully!')
+            return redirect('income')
+        else:
+            messages.error(request, 'Invalid form submission. Please correct the errors.')
+
+    else:
+        form = IncomeForm()
+
+    return render(request, 'income.html', {'form': form})
+
+def income(request):
+    if request.method == 'POST':
+        form = IncomeForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Monthly income added successfully!')
+            return redirect('income')
+        else:
+            messages.error(request, 'Invalid form submission. Please check your inputs.')
+    else:
+        form = IncomeForm()
+
+    return render(request, 'income.html', {'form': form})

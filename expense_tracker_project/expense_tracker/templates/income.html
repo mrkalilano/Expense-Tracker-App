@@ -1,0 +1,90 @@
+<!-- templates/income.html -->
+{% extends 'base.html' %}
+
+{% block title %}Income - My Expense Tracker{% endblock %}
+
+{% block content %}
+    <div class="expense-container">
+        <div class="expense-form">
+            <h2> Please enter your monthly salary: </h2>
+            <form method="post" action="{% url 'income' %}">
+                {% csrf_token %}
+                <div class="form-container">
+                    <label for="{{ form.month.id_for_label }}" class="label-black">Month:</label>
+                    {{ form.month }}
+                    <br>
+            
+                    <label for="{{ form.monthly_salary.id_for_label }}" class="label-black">Monthly Salary:</label>
+                    {{ form.monthly_salary }}
+                </div>
+                <button type="submit" class="expense-btn">Submit</button>
+            </form>
+            
+            <!-- Display the user's income information -->
+            {% if user_income %}
+                <div class="user-income-info">
+                    <p>Current Monthly Income:</p>
+                    <p>Month: {{ user_income.month }}</p>
+                    <p>Monthly Salary: {{ user_income.monthly_salary }}</p>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+    <a href="{% url 'income' %}" class="action-btn">View Expense List</a>
+{% endblock %}
+
+
+<style>
+    /* Add these styles for the expense form */
+    .expense-container {
+        display: flex;
+        flex-direction: column; /* Adjust to a column layout */
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        background-color: beige;
+    }
+
+    .expense-form {
+        width: 300px;
+        padding: 20px;
+        border: 1px solid #ccc;
+        background-color: #fff;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        color: black;
+    }
+
+    .form-container {
+        margin-bottom: 15px;
+    }
+
+    .label-black {
+        display: block;
+        margin-bottom: 5px;
+        color: black !important; /* Add !important to ensure it overrides other styles */
+    }
+
+    input {
+        width: 100%;
+        padding: 8px;
+        margin-bottom: 10px;
+        box-sizing: border-box;
+    }
+
+    .expense-btn, .action-btn {
+        width: 70%; /* Adjust the width to 70% */
+        max-width: 200px; /* Set a maximum width */
+        background-color: #4CAF50;
+        color: white;
+        padding: 10px;
+        border: none;
+        cursor: pointer;
+        border-radius: 5px;
+        margin-top: 10px; /* Add margin-top for spacing */
+    }
+
+    .expense-btn:hover, .action-btn:hover {
+        background-color: #45a049;
+    }
+</style>

@@ -1,0 +1,15 @@
+<!-- templates/enter_income.html -->
+{% extends 'base.html' %}
+
+{% block title %}Enter Income - My Expense Tracker{% endblock %}
+
+{% block content %}
+    <div class="section-container">
+        <h3>Enter Monthly Income</h3>
+        <form method="post" action="{% url 'enter_income' %}">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Save Income</button>
+        </form>
+    </div>
+{% endblock %}
