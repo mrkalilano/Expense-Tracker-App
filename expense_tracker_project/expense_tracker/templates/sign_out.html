@@ -49,10 +49,10 @@
 
     <div class="sign-out-container">
         <h3>Are you sure you want to sign out?</h3>
-        <form method="post" action="{% url 'confirm_sign_out' %}">
+        <form method="post" action="{% url 'expense_tracker:confirm_sign_out' %}">
             {% csrf_token %}
             <button type="submit">Yes, Sign Out</button>
         </form>
-        <a href="{% url 'home' %}">Cancel</a>
+        <a href="{% url 'expense_tracker:home' %}">Cancel</a>
     </div>
 {% endblock %}

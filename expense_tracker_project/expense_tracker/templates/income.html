@@ -7,7 +7,7 @@
     <div class="expense-container">
         <div class="expense-form">
             <h2> Please enter your monthly salary: </h2>
-            <form method="post" action="{% url 'income' %}">
+            <form method="post" action="{% url 'expense_tracker:income' %}">
                 {% csrf_token %}
                 <div class="form-container">
                     <label for="{{ form.month.id_for_label }}" class="label-black">Month:</label>
@@ -30,7 +30,7 @@
             {% endif %}
         </div>
     </div>
-    <a href="{% url 'income' %}" class="action-btn">View Expense List</a>
+    <a href="{% url 'expense_tracker:income' %}" class="action-btn">View Expense List</a>
 {% endblock %}
 
 

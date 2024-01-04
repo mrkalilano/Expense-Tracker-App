@@ -30,6 +30,7 @@ def add_expense(request):
     expense_list = Expense.objects.all()
 
     return render(request, 'add_expense.html', {'form': form, 'expense_list': expense_list})
+
 def home(request):
     return render(request, 'home.html')
 

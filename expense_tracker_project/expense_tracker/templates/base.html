@@ -73,10 +73,10 @@
         <h1>{% block header %}Expense Tracker{% endblock %}</h1>
         {% if user.is_authenticated %}
         <nav>
-            <button onclick="window.location.href='{% url 'home' %}'">Home</button>
-            <button onclick="window.location.href='{% url 'expense_list' %}'">Expenses</button>
-            <button onclick="window.location.href='{% url 'income' %}'">Income</button> 
-            <button onclick="window.location.href='{% url 'sign_out' %}'">Sign Out</button>
+            <button onclick="window.location.href='{% url 'expense_tracker:home' %}'">Home</button>
+            <button onclick="window.location.href='{% url 'expense_tracker:expense_list' %}'">Expenses</button>
+            <button onclick="window.location.href='{% url 'expense_tracker:income' %}'">Income</button>
+            <button onclick="window.location.href='{% url 'expense_tracker:sign_out' %}'">Sign Out</button>
         </nav>
         {% endif %}
     </header>
