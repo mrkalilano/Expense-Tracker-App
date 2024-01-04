@@ -1,0 +1,80 @@
+<!-- Add these styles for the pagination button -->
+<style>
+    .pagination-btn {
+        background-color: white;
+        color: black;
+        padding: 10px 15px;
+        border: 1px solid #ddd; /* Add border for better visibility */
+        cursor: pointer;
+        border-radius: 5px;
+        margin-right: 5px; /* Add margin-right for spacing between buttons */
+    }
+
+    .pagination-btn:hover {
+        background-color: #ddd; /* Lighter color on hover */
+    }
+
+    .pagination-btn.active {
+        background-color: #333;
+        color: white;
+    }
+</style>
+
+<nav aria-label="Topics pagination" class="mb-4">
+    <ul class="pagination d-flex"> <!-- Use the d-flex class to arrange buttons horizontally -->
+        {% if page_obj.number > 1 %}
+            <li class="page-item">
+                <a class="page-link pagination-btn" href="?page=1">First</a>
+            </li>
+        {% else %}
+            <li class="page-item disabled">
+                <span class="page-link pagination-btn">First</span>
+            </li>
+        {% endif %}
+
+        {% if page_obj.has_previous %}
+            <li class="page-item">
+                <a class="page-link pagination-btn" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+            </li>
+        {% else %}
+            <li class="page-item disabled">
+                <span class="page-link pagination-btn">Previous</span>
+            </li>
+        {% endif %}
+
+        {% for page_num in paginator.page_range %}
+            {% if page_obj.number == page_num %}
+                <li class="page-item active">
+                    <span class="page-link pagination-btn active">
+                        {{ page_num }}
+                        <span class="sr-only">(current)</span>
+                    </span>
+                </li>
+            {% elif page_num > page_obj.number|add:'-3' and page_num < page_obj.number|add:'3' %}
+                <li class="page-item">
+                    <a class="page-link pagination-btn" href="?page={{ page_num }}">{{ page_num }}</a>
+                </li>
+            {% endif %}
+        {% endfor %}
+
+        {% if page_obj.has_next %}
+            <li class="page-item">
+                <a class="page-link pagination-btn" href="?page={{ page_obj.next_page_number }}">Next</a>
+            </li>
+        {% else %}
+            <li class="page-item disabled">
+                <span class="page-link pagination-btn">Next</span>
+            </li>
+        {% endif %}
+
+        {% if page_obj.number != paginator.num_pages %}
+            <li class="page-item">
+                <a class="page-link pagination-btn" href="?page={{ paginator.num_pages }}">Last</a>
+            </li>
+        {% else %}
+            <li class="page-item disabled">
+                <span class="page-link pagination-btn">Last</span>
+            </li>
+        {% endif %}
+    </ul>
+</nav>

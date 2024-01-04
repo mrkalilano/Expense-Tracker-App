@@ -1,0 +1,79 @@
+<!-- templates/registration/login.html -->
+<style>
+    .login-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column; /* Align items vertically */
+        height: 100vh;
+        background-image:url('../images/background.jpeg'); /* Add a background color for better visibility */
+    }
+
+    .login-form {
+        width: 300px;
+        padding: 20px;
+        border: 3px solid #ccc; /* Add a border for better visibility */
+        background-color: whitesmoke; /* Add a background color for better visibility */
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add a subtle box shadow for depth */
+    }
+
+    .login-form h2 {
+        text-align: center;
+        color: black;
+    }
+
+    .login-form p {
+        text-align: center;
+        color: black;
+        margin-bottom: 15px;
+    }
+
+    .login-form label {
+        display: block;
+        margin-bottom: 8px;
+        color: black;
+    }
+
+    .login-form input {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 15px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+
+    .login-form button {
+        width: 100%; /* Make the button full width */
+        background-color: black; /* Set a primary button color */
+        color: white; /* Set button text color to white */
+        padding: 10px; /* Add padding for better appearance */
+        border: none; /* Remove border for a cleaner look */
+        cursor: pointer;
+    }
+
+    .login-form button:hover {
+        background-color: lightgray; /* Darker color on hover */
+    }
+</style>
+
+{% extends 'base.html' %}
+
+{% block title %}Login - My Expense Tracker{% endblock %}
+
+{% block content %}
+    <div class="login-container">
+        <div class="login-form">
+            <h2>Login</h2>
+            <p>Hi, Welcome to Expense Tracker! Let's compute your expenses.</p>
+            <form method="post" action="{% url 'login' %}">
+                {% csrf_token %}
+                <label for="{{ form.username.id_for_label }}">Username:</label>
+                {{ form.username }}
+                <label for="{{ form.password.id_for_label }}">Password:</label>
+                {{ form.password }}
+                <button type="submit">Login</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}

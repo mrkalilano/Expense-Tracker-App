@@ -1,0 +1,141 @@
+* {
+    margin: 0;
+    padding: 0;
+    /* font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; */
+    font-family: 'Century Gothic';
+  }
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    background-image: url('../images/background.png');
+    background-size: cover;
+    background-position: center;
+    color: none;
+}
+
+header {
+    background-color: #333;
+    padding: 20px;
+    text-align: center;
+}
+
+header h1 {
+    margin: 0;
+}
+
+nav {
+    background-color: #444;
+    padding: 10px;
+    text-align: center;
+}
+
+nav button {
+    background-color: white;
+    color: black;
+    cursor: pointer;
+    font-size: 16px;
+    margin: 0 10px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+}
+
+nav button:hover {
+    background-color: #ddd; /* Lighter color on hover */
+}
+
+main {
+    padding: 20px;
+}
+
+footer {
+    background-color: #333;
+    padding: 10px;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+.home-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+}
+
+.section-container {
+    margin-top: 30px;
+    padding: 20px;
+    background-color: beige;
+    border-radius: 8px;
+}
+
+.expense-list,
+.add-expense-form {
+    margin-top: 15px;
+}
+
+.expense-list p,
+.add-expense-form p {
+    color: black;
+}
+
+.nav-container {
+    margin-top: 20px;
+}
+
+/* Table Styles */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+    color: black; /* Updated font color to black */
+}
+
+th {
+    background-color: black; /* Green */
+    color: white;
+}
+
+/* Button Styles */
+.action-btn {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    margin: 10px;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    border-radius: 5px;
+    background-color: black; /* Green */
+    color: white;
+    border: black;
+}
+
+.action-btn:hover {
+    background-color: lightgray; /* Darker green on hover */
+}
+.form-container {
+    margin-top: 15px;
+}
+
+.form-container label {
+    display: block;
+    margin-bottom: 5px;
+    color: black !important;
+}
+
+.form-container input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+}

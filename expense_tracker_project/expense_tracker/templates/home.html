@@ -1,0 +1,106 @@
+<!-- templates/home.html -->
+<style>
+    .home-container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+        text-align: center;
+    }
+
+    .section-container {
+        margin-top: 30px;
+        padding: 20px;
+        background-color: beige;
+        border-radius: 8px;
+    }
+
+    .expense-list,
+    .add-expense-form {
+        margin-top: 15px;
+    }
+
+    .expense-list p,
+    .add-expense-form p {
+        color: black;
+    }
+
+    .nav-container {
+        margin-top: 20px;
+    }
+
+    /* Table Styles */
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 15px;
+    }
+
+    th, td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+        color: black; /* Updated font color to black */
+    }
+
+    th {
+        background-color: black; /* Green */
+        color: white;
+    }
+
+    /* Button Styles */
+    .action-btn {
+        display: inline-block;
+        padding: 10px 20px;
+        font-size: 16px;
+        margin: 10px;
+        text-align: center;
+        text-decoration: none;
+        cursor: pointer;
+        border-radius: 5px;
+        background-color: black; /* Green */
+        color: white;
+        border: none;
+    }
+
+    .action-btn:hover {
+        background-color: lightgray; /* Darker green on hover */
+    }
+    .form-container {
+        margin-top: 15px;
+    }
+
+    .form-container label {
+        display: block;
+        margin-bottom: 5px;
+        color: black !important;
+    }
+
+    .form-container input {
+        width: 100%;
+        padding: 8px;
+        margin-bottom: 10px;
+        box-sizing: border-box;
+    }
+</style>
+
+{% extends 'base.html' %}
+
+{% block title %}Home - My Expense Tracker{% endblock %}
+
+{% block content %}
+    <div class="home-container">
+        <div class="section-container">
+            <div class="add-expense-form">
+                {# Placeholder for adding an expense #}
+            </div>
+            <a href="{% url 'add_expense' %}" class="action-btn">Add Expense</a>
+        </div>
+
+        <div class="section-container">
+            <div class="expense-list">
+                {# Placeholder for displaying expense list, table moved here #}
+            </div>
+            <a href="{% url 'expense_list' %}" class="action-btn">View Expense List</a>
+        </div>
+    </div>
+{% endblock %}

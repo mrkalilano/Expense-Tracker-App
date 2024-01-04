@@ -1,0 +1,84 @@
+<!-- templates/add_expense.html -->
+{% extends 'base.html' %}
+
+{% block title %}Add Expense - My Expense Tracker{% endblock %}
+
+{% block content %}
+    <div class="expense-container">
+        <div class="expense-form">
+            <h2>Add Expense</h2>
+            <form method="post" action="{% url 'add_expense' %}">
+                {% csrf_token %}
+                <div class="form-container">
+                    <label for="{{ form.date.id_for_label }}" class="label-black">Date:</label>
+                    {{ form.date }}
+                    <br>
+
+                    <label for="{{ form.description.id_for_label }}" class="label-black">Expense:</label>
+                    {{ form.description }}
+                    <br>
+
+                    <label for="{{ form.amount.id_for_label }}" class="label-black">Amount:</label>
+                    {{ form.amount }}
+                </div>
+                <button type="submit" class="expense-btn">Add Expense</button>
+            </form>
+        </div>
+    </div>
+    <a href="{% url 'expense_list' %}" class="action-btn">View Expense List</a>
+{% endblock %}
+
+<style>
+    /* Add these styles for the expense form */
+    .expense-container {
+        display: flex;
+        flex-direction: column; /* Adjust to a column layout */
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        background-color: beige;
+    }
+
+    .expense-form {
+        width: 300px;
+        padding: 20px;
+        border: 1px solid #ccc;
+        background-color: #fff;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        color: black;
+    }
+
+    .form-container {
+        margin-bottom: 15px;
+    }
+
+    .label-black {
+        display: block;
+        margin-bottom: 5px;
+        color: black !important; /* Add !important to ensure it overrides other styles */
+    }
+
+    input {
+        width: 100%;
+        padding: 8px;
+        margin-bottom: 10px;
+        box-sizing: border-box;
+    }
+
+    .expense-btn, .action-btn {
+        width: 70%; /* Adjust the width to 70% */
+        max-width: 200px; /* Set a maximum width */
+        background-color: #4CAF50;
+        color: white;
+        padding: 10px;
+        border: none;
+        cursor: pointer;
+        border-radius: 5px;
+        margin-top: 10px; /* Add margin-top for spacing */
+    }
+
+    .expense-btn:hover, .action-btn:hover {
+        background-color: #45a049;
+    }
+</style>

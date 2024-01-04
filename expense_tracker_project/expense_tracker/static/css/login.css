@@ -1,0 +1,13 @@
+/* Add this to your CSS file or inside a style tag in the head of your HTML document */
+
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Adjust the height as needed */
+}
+
+.login-form {
+    width: 300px; /* Adjust the width as needed */
+}
+

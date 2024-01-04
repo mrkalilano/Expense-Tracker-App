@@ -1,0 +1,91 @@
+<!-- templates/base.html -->
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Roboto Slab' rel='stylesheet'>
+    <title>{% block title %}Expense Tracker{% endblock %}</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Century Gothic', sans-serif;
+            background-image: url('static/images/background.png');
+            background-size: cover;
+            background-position: center;
+            color: none;
+        }
+
+        header {
+            background-color: #333;
+            padding: 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+            color: white; /* Set title font color to white */
+        }
+
+        nav {
+            background-color: #444;
+            padding: 10px;
+            text-align: center;
+        }
+
+        nav button {
+            background-color: white;
+            color: black;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 0 10px;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+        }
+
+        nav button:hover {
+            background-color: #ddd; /* Lighter color on hover */
+        }
+
+        main {
+            padding: 20px;
+        }
+
+        footer {
+            background-color: #333;
+            padding: 10px;
+            color: white;
+            text-align: center;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>{% block header %}Expense Tracker{% endblock %}</h1>
+        {% if user.is_authenticated %}
+        <nav>
+            <button onclick="window.location.href='{% url 'home' %}'">Home</button>
+            <button onclick="window.location.href='{% url 'expense_list' %}'">Expenses</button>
+            <button onclick="window.location.href='{% url 'sign_out' %}'">Sign Out</button>
+        </nav>
+        {% endif %}
+    </header>
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer>
+        &copy; Mark Joseph Alilano Expense Tracker
+    </footer>
+</body>
+</html>
