@@ -66,7 +66,7 @@ def income(request):
         if form.is_valid():
             form.save()
             # Redirect to the income list page after adding income
-            return redirect('income_list.html')
+            return redirect('expense_tracker:income_list')
     else:
         form = IncomeForm()
 
