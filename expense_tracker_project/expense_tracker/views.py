@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.db.models import Sum
 from .forms import ExpenseForm
 from .models import Expense, Income
 from django.shortcuts import render
@@ -7,9 +8,10 @@ from django.contrib import messages
 from .forms import IncomeForm
 
 def expense_list(request):
-    # Fetch all expenses (you may filter based on user if needed)
     expenses = Expense.objects.all()
-    return render(request, 'expense_list.html', {'expenses': expenses})
+    total_amount = expenses.aggregate(total=Sum('amount'))['total'] or 0
+
+    return render(request, 'expense_list.html', {'expenses': expenses, 'total_amount': total_amount})
 
 def add_expense(request):
     if request.method == 'POST':
@@ -22,7 +24,7 @@ def add_expense(request):
             new_expense.save()
 
             # Redirect to the expense list page
-            return redirect('expense_list')
+            return redirect('expense_tracker:expense_list')
     else:
         form = ExpenseForm()
 
@@ -57,32 +59,19 @@ def confirm_sign_out(request):
         return redirect('login')  # Redirect to the login page
     return redirect('home')  # If the user cancels, redirect them back to the home page
 
-def Income(request):
-    if request.method == 'POST':
-        form = IncomeForm(request.POST)
-        if form.is_valid():
-            income_amount = form.cleaned_data['income_amount']
-            # Save the income_amount to the database or perform necessary actions
-            messages.success(request, f'Monthly Income of {income_amount} added successfully!')
-            return redirect('income')
-        else:
-            messages.error(request, 'Invalid form submission. Please correct the errors.')
-
-    else:
-        form = IncomeForm()
-
-    return render(request, 'income.html', {'form': form})
 
 def income(request):
     if request.method == 'POST':
         form = IncomeForm(request.POST)
         if form.is_valid():
             form.save()
-            messages.success(request, 'Monthly income added successfully!')
-            return redirect('income')
-        else:
-            messages.error(request, 'Invalid form submission. Please check your inputs.')
+            # Redirect to the income list page after adding income
+            return redirect('income_list.html')
     else:
         form = IncomeForm()
 
     return render(request, 'income.html', {'form': form})
+
+def income_list(request):
+    incomes = Income.objects.all()
+    return render(request, 'income_list.html', {'incomes': incomes})

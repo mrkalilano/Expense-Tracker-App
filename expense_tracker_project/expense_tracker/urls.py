@@ -1,6 +1,7 @@
 from django.urls import path
 from .views import home, expense_list, add_expense
 from .views import home, expense_list, add_expense, sign_out, confirm_sign_out, income
+from .views import income_list
 
 app_name = 'expense_tracker'  # Add this line to define the app namespace
 
@@ -11,4 +12,5 @@ urlpatterns = [
     path('sign_out/', sign_out, name='sign_out'),
     path('confirm_sign_out/', confirm_sign_out, name ='confirm_sign_out'),
     path('income/', income, name ='income'),  # Add this line for the income view
+    path('income_list/',income_list, name='income_list'),
 ]

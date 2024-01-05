@@ -34,23 +34,8 @@ class add_expense(BaseModel):
         return self.description
 
 class Income(models.Model):
-    MONTH_CHOICES = [
-        ('January', 'January'),
-        ('February', 'February'),
-        ('March', 'March'),
-        ('April', 'April'),
-        ('May', 'May'),
-        ('June', 'June'),
-        ('July', 'July'),
-        ('August', 'August'),
-        ('September', 'September'),
-        ('October', 'October'),
-        ('November', 'November'),
-        ('December', 'December'),
-    ]
-
-    month = models.CharField(max_length=20, choices=MONTH_CHOICES)
+    month = models.CharField(max_length=255)  # You can adjust the max length as needed
     monthly_salary = models.DecimalField(max_digits=10, decimal_places=2)
 
     def __str__(self):
-        return f"{self.month} - {self.monthly_salary}"
+        return f"Income for {self.month}"

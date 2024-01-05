@@ -6,7 +6,7 @@
 {% block content %}
     <div class="expense-container">
         <div class="expense-form">
-            <h2> Please enter your monthly salary: </h2>
+            <h2>Please enter your monthly salary:</h2>
             <form method="post" action="{% url 'expense_tracker:income' %}">
                 {% csrf_token %}
                 <div class="form-container">
@@ -30,9 +30,8 @@
             {% endif %}
         </div>
     </div>
-    <a href="{% url 'expense_tracker:income' %}" class="action-btn">View Expense List</a>
+    <a href="{% url 'expense_tracker:income_list' %}" class="action-btn">View Income List</a>
 {% endblock %}
-
 
 <style>
     /* Add these styles for the expense form */
@@ -72,7 +71,8 @@
         box-sizing: border-box;
     }
 
-    .expense-btn, .action-btn {
+    .expense-btn,
+    .action-btn {
         width: 70%; /* Adjust the width to 70% */
         max-width: 200px; /* Set a maximum width */
         background-color: #4CAF50;
@@ -84,7 +84,8 @@
         margin-top: 10px; /* Add margin-top for spacing */
     }
 
-    .expense-btn:hover, .action-btn:hover {
+    .expense-btn:hover,
+    .action-btn:hover {
         background-color: #45a049;
     }
 </style>

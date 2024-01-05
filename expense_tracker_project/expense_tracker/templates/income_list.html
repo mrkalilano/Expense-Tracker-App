@@ -1,0 +1,24 @@
+<!-- income_list.html -->
+{% extends 'base.html' %}
+
+{% block title %}Income List{% endblock %}
+
+{% block content %}
+    <h2>Income List</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Month</th>
+                <th>Monthly Salary</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for income in incomes %}
+                <tr>
+                    <td>{{ income.month }}</td>
+                    <td>{{ income.monthly_salary }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
